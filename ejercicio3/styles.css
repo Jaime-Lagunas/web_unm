@@ -1,0 +1,16 @@
+/* Estilos básicos */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 20px;
+  color: #333;
+}
+
+p.demo {
+  padding: 10px;
+  border: 1px solid #3498db;
+  background-color: #eaf2f8;
+  font-size: 18px;
+  text-align: center;
+  color: #2c3e50;
+}

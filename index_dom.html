@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <title>Este texto es el título del documento</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Este es un documento HTML5">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <link rel="stylesheet" href="misestilos.css">
+     <script>
+      // ejecuta esta función cuando se cargue el documento
+      window.onload = function () {
+        // crea dinámicamente un par de elementos HTML en una página vacia
+        var heading = document.createElement("h1");
+        var heading_text = document.createTextNode("el texto que desee");
+        heading.appendChild(heading_text);
+        document.body.appendChild(heading);
+      };
+    </script>
+
+
+
+</head>
+
+<body>
+    <header>
+        Este es el título
+    </header>
+    <nav>
+        Principal | Fotos | Videos | Contacto
+    </nav>
+    
+    <main>
+        <section>
+            Artículos
+        </section>
+        <aside>
+            Cita del artículo uno
+            Cita del artículo dos
+        </aside>
+    </main>
+    <footer>
+        &copy; Derechos Reservados 2026
+    </footer>
+</body>
+</html>
