@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Laboratorio Box Model</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: sans-serif; }
+        .caja {
+            width: 250px;
+            height: 150px;
+            background-color: #e3f2fd;
+            padding: 20px;
+            border: 4px solid #2196f3;
+            margin: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Demostración del Modelo de Caja</h1>
+    <div class="caja">
+        <strong>Caja 1:</strong> Tiene 250px de ancho total gracias a <code>box-sizing: border-box</code>.
+    </div>
+    <div class="caja">
+        <strong>Caja 2:</strong> Mantiene la separación de 30px de margen respecto a la caja superior.
+    </div>
+</body>
+</html>
