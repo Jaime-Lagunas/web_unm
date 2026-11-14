@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Estudiante</title>
+</head>
+<body>
+    <h1>Formulario de Registro - Club de Código</h1>
+    <form action="#" method="POST">
+        <div>
+            <label for="nombre">Nombre Completo:</label><br>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
+        </div>
+        <br>
+        <div>
+            <label for="correo">Correo Institucional:</label><br>
+            <input type="email" id="correo" name="correo" placeholder="estudiante@univ.edu" required>
+        </div>
+        <br>
+        <div>
+            <label for="pass">Contraseña:</label><br>
+            <input type="password" id="pass" name="pass" required minlength="8">
+        </div>
+        <br>
+        <div>
+            <label for="comentario">¿Por qué deseas unirte?:</label><br>
+            <textarea id="comentario" name="comentario" rows="4" cols="40" placeholder="Escribe tus motivos..."></textarea>
+        </div>
+        <br>
+        <button type="submit">Enviar Registro</button>
+    </form>
+</body>
+</html>
