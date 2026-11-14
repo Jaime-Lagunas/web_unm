@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <!-- ==========================================
+         CONFIGURACIÓN BÁSICA
+         ========================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Práctica 4A - Galería de Efectos jQuery</title>
+
+    <!-- ==========================================
+         BOOTSTRAP
+         ========================================== -->
+
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+    <!-- ==========================================
+         JQUERY
+         ========================================== -->
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- ==========================================
+         ESTILOS PROPIOS
+         ========================================== -->
+
+    <style>
+
+        body{
+            background:#f8f9fa;
+        }
+
+        /*
+        =====================================
+        CAJA DE PRUEBAS
+
+        Todos los efectos trabajarán
+        sobre este elemento.
+
+        =====================================
+        */
+
+        #caja {
+
+            width:300px;
+
+            height:180px;
+
+            background:#0d6efd;
+
+            color:white;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            font-size:1.5rem;
+
+            font-weight:bold;
+
+            margin:30px auto;
+
+            border-radius:10px;
+
+            position:relative;
+
+        }
+
+        button{
+
+            margin-bottom:10px;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <h1 class="text-center mb-4">
+
+        Práctica 4A - Efectos de jQuery
+
+    </h1>
+
+    <p class="text-center">
+
+        Haz clic en los botones y observa
+        el comportamiento de la caja azul.
+
+    </p>
+
+    <!-- =====================================
+         BOTONES DE EFECTOS
+         ===================================== -->
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <button id="btnShow"
+                    class="btn btn-success w-100">
+                show()
+            </button>
+        </div>
+
+        <div class="col-md-3">
+            <button id="btnHide"
+                    class="btn btn-danger w-100">
+                hide()
+            </button>
+        </div>
+
+        <div class="col-md-3">
+            <button id="btnToggle"
+                    class="btn btn-primary w-100">
+                toggle()
+            </button>
+        </div>
+
+        <div class="col-md-3">
+            <button id="btnFadeIn"
+                    class="btn btn-secondary w-100">
+                fadeIn()
+            </button>
+        </div>
+
+    </div>
+
+    <div class="row mt-2">
+
+        <div class="col-md-3">
+            <button id="btnFadeOut"
+                    class="btn btn-secondary w-100">
+                fadeOut()
+            </button>
+        </div>
+
+        <div class="col-md-3">
+            <button id="btnFadeToggle"
+                    class="btn btn-secondary w-100">
+                fadeToggle()
+            </button>
+        </div>
+
+        <div class="col-md-3">
+            <button id="btnFadeTo"
+                    class="btn btn-warning w-100">
+                fadeTo()
+            </button>
+        </div>
+
+        <div class="col-md-3">
+            <button id="btnSlideDown"
+                    class="btn btn-info w-100">
+                slideDown()
+            </button>
+        </div>
+
+    </div>
+
+    <div class="row mt-2">
+
+        <div class="col-md-3">
+            <button id="btnSlideUp"
+                    class="btn btn-info w-100">
+                slideUp()
+            </button>
+        </div>
+
+        <div class="col-md-3">
+            <button id="btnSlideToggle"
+                    class="btn btn-info w-100">
+                slideToggle()
+            </button>
+        </div>
+
+        <div class="col-md-3">
+            <button id="btnAnimate"
+                    class="btn btn-dark w-100">
+                animate()
+            </button>
+        </div>
+
+        <div class="col-md-3">
+            <button id="btnReset"
+                    class="btn btn-outline-dark w-100">
+                Reiniciar
+            </button>
+        </div>
+
+    </div>
+
+    <!-- =====================================
+         ELEMENTO DE PRUEBA
+         ===================================== -->
+
+    <div id="caja">
+
+        Oaxaca
+
+    </div>
+
+</div>
+
+<script>
+
+/*
+======================================================
+DOCUMENT READY
+
+Se ejecuta cuando el HTML ya fue cargado.
+
+======================================================
+*/
+
+$(document).ready(function(){
+
+    /*
+    ==================================================
+    show()
+
+    Muestra un elemento oculto.
+
+    ==================================================
+    */
+
+    $("#btnShow").click(function(){
+
+        $("#caja").show();
+
+    });
+
+
+    /*
+    ==================================================
+    hide()
+
+    Oculta un elemento.
+
+    ==================================================
+    */
+
+    $("#btnHide").click(function(){
+
+        $("#caja").hide();
+
+    });
+
+
+    /*
+    ==================================================
+    toggle()
+
+    Alterna:
+
+    visible <-> oculto
+
+    ==================================================
+    */
+
+    $("#btnToggle").click(function(){
+
+        $("#caja").toggle();
+
+    });
+
+
+    /*
+    ==================================================
+    fadeIn()
+
+    Muestra el elemento mediante
+    un efecto de desvanecimiento.
+
+    ==================================================
+    */
+
+    $("#btnFadeIn").click(function(){
+
+        $("#caja").fadeIn(1000);
+
+    });
+
+
+    /*
+    ==================================================
+    fadeOut()
+
+    Oculta el elemento mediante
+    un desvanecimiento.
+
+    ==================================================
+    */
+
+    $("#btnFadeOut").click(function(){
+
+        $("#caja").fadeOut(1000);
+
+    });
+
+
+    /*
+    ==================================================
+    fadeToggle()
+
+    Alterna fadeIn y fadeOut.
+
+    ==================================================
+    */
+
+    $("#btnFadeToggle").click(function(){
+
+        $("#caja").fadeToggle(1000);
+
+    });
+
+
+    /*
+    ==================================================
+    fadeTo()
+
+    Modifica la opacidad.
+
+    Sintaxis:
+
+    fadeTo(tiempo, opacidad)
+
+    Opacidad:
+
+    1.0 = 100%
+    0.5 = 50%
+    0.1 = 10%
+
+    ==================================================
+    */
+
+    $("#btnFadeTo").click(function(){
+
+        $("#caja").fadeTo(1000,0.3);
+
+    });
+
+
+    /*
+    ==================================================
+    slideDown()
+
+    Despliega el elemento hacia abajo.
+
+    ==================================================
+    */
+
+    $("#btnSlideDown").click(function(){
+
+        $("#caja").slideDown();
+
+    });
+
+
+    /*
+    ==================================================
+    slideUp()
+
+    Contrae el elemento hacia arriba.
+
+    ==================================================
+    */
+
+    $("#btnSlideUp").click(function(){
+
+        $("#caja").slideUp();
+
+    });
+
+
+    /*
+    ==================================================
+    slideToggle()
+
+    Alterna entre slideUp y slideDown.
+
+    ==================================================
+    */
+
+    $("#btnSlideToggle").click(function(){
+
+        $("#caja").slideToggle();
+
+    });
+
+
+    /*
+    ==================================================
+    animate()
+
+    Permite crear animaciones personalizadas.
+
+    En este ejemplo:
+
+    1. Aumenta ancho
+    2. Desplaza horizontalmente
+    3. Reduce opacidad
+
+    ==================================================
+    */
+
+    $("#btnAnimate").click(function(){
+
+        $("#caja").animate({
+
+            width:"500px",
+
+            left:"50px",
+
+            opacity:0.5
+
+        },1500);
+
+    });
+
+
+    /*
+    ==================================================
+    REINICIAR
+
+    Devuelve la caja a su estado inicial.
+
+    ==================================================
+    */
+
+    $("#btnReset").click(function(){
+
+        $("#caja")
+
+        .stop(true,true)
+
+        .show()
+
+        .css({
+
+            width:"300px",
+
+            opacity:"1",
+
+            left:"0px"
+
+        });
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

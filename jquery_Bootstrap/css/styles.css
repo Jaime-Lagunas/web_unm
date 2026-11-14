@@ -1,0 +1,556 @@
+/*
+========================================================
+DASHBOARD OAXACA
+Archivo: styles.css
+
+OBJETIVO:
+Aprender a personalizar Bootstrap mediante CSS.
+
+TEMAS QUE SE EXPLICAN:
+
+1. Selectores CSS
+2. Variables CSS
+3. Responsive Design
+4. Hero con imagen de fondo
+5. Personalización de Bootstrap
+6. Efectos Hover
+7. Flexbox básico
+8. Transiciones
+
+========================================================
+*/
+
+/*
+========================================================
+VARIABLES CSS
+========================================================
+
+Las variables permiten reutilizar colores
+sin repetirlos constantemente.
+
+Se definen dentro de :root
+
+Ejemplo:
+
+var(--color-primario)
+
+========================================================
+*/
+
+:root {
+
+    --color-primario: #0d6efd;
+
+    --color-secundario: #198754;
+
+    --color-fondo: #f5f6fa;
+
+    --color-tarjeta: #ffffff;
+
+    --color-footer: #212529;
+
+    --color-texto: #333333;
+
+}
+
+/*
+========================================================
+RESETEO GENERAL
+========================================================
+
+Aseguramos una experiencia uniforme
+en todos los navegadores.
+
+========================================================
+*/
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+/*
+========================================================
+BODY
+========================================================
+
+body representa toda la página visible.
+
+========================================================
+*/
+
+body {
+
+    background-color: var(--color-fondo);
+
+    color: var(--color-texto);
+
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+/*
+========================================================
+NAVBAR
+========================================================
+
+Bootstrap ya proporciona estilos.
+
+Aquí sólo añadimos mejoras visuales.
+
+========================================================
+*/
+
+.navbar {
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+
+}
+
+/*
+========================================================
+HERO SECTION
+========================================================
+
+El Hero es la primera sección
+visual importante de la página.
+
+Utilizaremos una imagen de Oaxaca.
+
+La imagen puede cambiarse posteriormente
+por otra de libre uso.
+
+========================================================
+*/
+
+.hero {
+
+    /*
+    Imagen de fondo
+    */
+
+    background-image:
+        url("https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396");
+
+    /*
+    Hace que la imagen cubra toda
+    el área disponible
+    */
+
+    background-size: cover;
+
+    /*
+    Centra la imagen
+    */
+
+    background-position: center;
+
+    /*
+    Altura mínima
+    */
+
+    min-height: 500px;
+
+    /*
+    Evita que la imagen se repita
+    */
+
+    background-repeat: no-repeat;
+
+    /*
+    Posicionamiento relativo para overlay
+    */
+
+    position: relative;
+
+}
+
+/*
+========================================================
+OVERLAY
+========================================================
+
+Capa oscura semitransparente
+encima de la imagen.
+
+Mejora la lectura del texto.
+
+========================================================
+*/
+
+.hero-overlay {
+
+    background: rgba(0, 0, 0, 0.55);
+
+    min-height: 500px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    color: white;
+
+}
+
+/*
+========================================================
+TEXTO DEL HERO
+========================================================
+*/
+
+.hero h1 {
+
+    font-size: 4rem;
+
+    font-weight: bold;
+
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+
+}
+
+.hero p {
+
+    font-size: 1.2rem;
+
+}
+
+/*
+========================================================
+BOTONES DIDÁCTICOS
+========================================================
+
+Estos botones serán utilizados
+para demostrar jQuery.
+
+========================================================
+*/
+
+#btnTema,
+#btnResaltar,
+#btnInterpretacion {
+
+    transition: 0.4s;
+
+}
+
+/*
+========================================================
+EFECTO HOVER
+========================================================
+
+hover se activa cuando
+el cursor pasa encima.
+
+========================================================
+*/
+
+#btnTema:hover,
+#btnResaltar:hover,
+#btnInterpretacion:hover {
+
+    transform: scale(1.05);
+
+}
+
+/*
+========================================================
+CARDS DEL DASHBOARD
+========================================================
+
+Las gráficas estarán dentro
+de tarjetas Bootstrap.
+
+========================================================
+*/
+
+.dashboard-card {
+
+    border: none;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,.12);
+
+    transition: all .4s ease;
+
+}
+
+/*
+========================================================
+HOVER SOBRE TARJETAS
+
+Permite mostrar visualmente
+los eventos mouseenter
+y mouseleave de jQuery.
+
+========================================================
+*/
+
+.dashboard-card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow: 0 10px 25px rgba(0,0,0,.20);
+
+}
+
+/*
+========================================================
+TÍTULOS DE TARJETAS
+========================================================
+*/
+
+.dashboard-card h3 {
+
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    color: var(--color-primario);
+
+    font-weight: bold;
+
+}
+
+/*
+========================================================
+CANVAS
+
+Chart.js dibuja las gráficas
+dentro de canvas.
+
+========================================================
+*/
+
+canvas {
+
+    width: 100% !important;
+
+    height: 350px !important;
+
+}
+
+/*
+========================================================
+NUBE DE PALABRAS
+========================================================
+
+Contenedor que utilizará jQCloud.
+
+========================================================
+*/
+
+#nubePalabras {
+
+    width: 100%;
+
+    height: 350px;
+
+}
+
+/*
+========================================================
+ACCORDION BOOTSTRAP
+========================================================
+
+Personalización visual.
+
+========================================================
+*/
+
+.accordion-button {
+
+    font-weight: bold;
+
+}
+
+.accordion-button:not(.collapsed) {
+
+    background-color: #dbeafe;
+
+    color: #0d47a1;
+
+}
+
+/*
+========================================================
+FOOTER
+========================================================
+*/
+
+footer {
+
+    background-color: var(--color-footer);
+
+    color: white;
+
+}
+
+/*
+========================================================
+ANIMACIÓN PERSONALIZADA
+========================================================
+
+Será activada mediante jQuery.
+
+========================================================
+*/
+
+.destacado {
+
+    border: 4px solid orange !important;
+
+    box-shadow: 0 0 20px orange !important;
+
+}
+
+/*
+========================================================
+ESTADO OCULTO
+
+jQuery utilizará esta clase
+para mostrar y ocultar elementos.
+
+========================================================
+*/
+
+.oculto {
+
+    display: none;
+
+}
+
+/*
+========================================================
+MODO OAXACA
+
+Tema alternativo activado
+mediante botón jQuery.
+
+========================================================
+*/
+
+.tema-oaxaca {
+
+    background-color: #14532d !important;
+
+}
+
+.tema-oaxaca h3 {
+
+    color: #14532d !important;
+
+}
+
+/*
+========================================================
+RESPONSIVE DESIGN
+
+BOOTSTRAP ES RESPONSIVE,
+PERO PODEMOS PERSONALIZAR.
+
+========================================================
+
+1200px+
+Desktop
+
+992px
+Laptop
+
+768px
+Tablet
+
+576px
+Celular
+
+========================================================
+*/
+
+/*
+========================================================
+TABLETS
+========================================================
+*/
+
+@media (max-width: 992px) {
+
+    .hero h1 {
+
+        font-size: 3rem;
+
+    }
+
+}
+
+/*
+========================================================
+MÓVILES
+========================================================
+*/
+
+@media (max-width: 768px) {
+
+    .hero {
+
+        min-height: 400px;
+
+    }
+
+    .hero-overlay {
+
+        min-height: 400px;
+
+    }
+
+    .hero h1 {
+
+        font-size: 2.2rem;
+
+    }
+
+    .hero p {
+
+        font-size: 1rem;
+
+    }
+
+    canvas {
+
+        height: 300px !important;
+
+    }
+
+}
+
+/*
+========================================================
+MÓVILES PEQUEÑOS
+========================================================
+*/
+
+@media (max-width: 576px) {
+
+    .hero h1 {
+
+        font-size: 1.8rem;
+
+    }
+
+    .hero p {
+
+        font-size: 0.95rem;
+
+    }
+
+}

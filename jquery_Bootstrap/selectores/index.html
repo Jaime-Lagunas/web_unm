@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <!--
+    ==========================================
+    CONFIGURACIÓN BÁSICA DEL DOCUMENTO
+    ==========================================
+    -->
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Práctica 2 - Selectores jQuery</title>
+
+    <!--
+    ==========================================
+    BOOTSTRAP
+    ==========================================
+
+    Se utiliza únicamente para mejorar
+    la apariencia visual.
+
+    ==========================================
+    -->
+
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+    <!--
+    ==========================================
+    JQUERY
+    ==========================================
+
+    Biblioteca JavaScript que simplifica
+    la manipulación del DOM.
+
+    ==========================================
+    -->
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</head>
+
+<body class="container mt-5">
+
+<!--
+==========================================
+ELEMENTO CON ID
+==========================================
+
+El atributo id debe ser único.
+
+Para seleccionarlo usamos:
+
+$("#titulo")
+
+==========================================
+-->
+
+<h1 id="titulo">
+
+    Bienvenido a jQuery
+
+</h1>
+
+<!--
+==========================================
+ELEMENTOS CON CLASE
+==========================================
+
+Una misma clase puede repetirse.
+
+Para seleccionarlos usamos:
+
+$(".parrafo")
+
+==========================================
+-->
+
+<p class="parrafo">
+
+    Este es el primer párrafo.
+
+</p>
+
+<p class="parrafo">
+
+    Este es el segundo párrafo.
+
+</p>
+
+<!--
+==========================================
+BOTÓN
+==========================================
+
+Al hacer clic ejecutará
+una función jQuery.
+
+==========================================
+-->
+
+<button
+id="btnSeleccionar"
+class="btn btn-primary">
+
+    Aplicar Selectores
+
+</button>
+
+<script>
+
+    /*
+    ==========================================
+    DOCUMENT READY
+    ==========================================
+
+    Se ejecuta cuando todo el HTML
+    ya fue cargado por el navegador.
+
+    ==========================================
+    */
+
+    $(document).ready(function(){
+
+        /*
+        ======================================
+        EVENTO CLICK
+        ======================================
+
+        Cuando el usuario haga clic
+        sobre el botón.
+
+        ======================================
+        */
+
+        $("#btnSeleccionar").click(function(){
+
+            /*
+            ==================================
+            SELECTOR POR ID
+            ==================================
+
+            El símbolo #
+
+            significa buscar un ID.
+
+            Busca:
+
+            id="titulo"
+
+            ==================================
+            */
+
+            $("#titulo")
+            .css("color","red");
+
+            /*
+            ==================================
+            SELECTOR POR CLASE
+            ==================================
+
+            El símbolo .
+
+            significa buscar una clase.
+
+            Busca:
+
+            class="parrafo"
+
+            ==================================
+            */
+
+            $(".parrafo")
+            .css("font-weight","bold");
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>

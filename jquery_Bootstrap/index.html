@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+
+<!--
+====================================================
+DASHBOARD OAXACA
+====================================================
+
+AUTOR:
+Ejercicio académico para Bootstrap + jQuery
+
+OBJETIVOS DIDÁCTICOS
+
+1. Comprender la estructura HTML5.
+2. Integrar Bootstrap 5.
+3. Integrar jQuery.
+4. Integrar Chart.js.
+5. Integrar jQCloud.
+6. Aplicar diseño responsive.
+7. Utilizar selectores jQuery.
+8. Manipular el DOM.
+9. Aplicar eventos y efectos.
+
+====================================================
+-->
+
+<html lang="es">
+
+<head>
+
+    <!--
+    ====================================================
+    CONFIGURACIÓN BÁSICA DEL DOCUMENTO
+    ====================================================
+    -->
+
+    <meta charset="UTF-8">
+
+    <!--
+    viewport permite que Bootstrap sea responsive
+    en teléfonos y tablets.
+    -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard Oaxaca</title>
+
+    <!--
+    ====================================================
+    BOOTSTRAP 5
+    ====================================================
+
+    Bootstrap es un framework CSS.
+
+    Nos proporciona:
+
+    - Navbar
+    - Grid
+    - Cards
+    - Accordion
+    - Botones
+    - Responsive Design
+
+    CDN:
+    Content Delivery Network
+    ====================================================
+    -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!--
+    ====================================================
+    jQCloud
+    ====================================================
+
+    Librería para crear nubes de palabras.
+
+    Será utilizada para mostrar los principales
+    problemas sociales percibidos por la población.
+
+    ====================================================
+    -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jqcloud/1.0.4/jqcloud.min.css">
+
+    <!--
+    ====================================================
+    HOJA DE ESTILOS DEL PROYECTO
+    ====================================================
+    -->
+
+    <link
+        rel="stylesheet"
+        href="css/styles.css">
+
+</head>
+
+<body>
+
+<!--
+====================================================
+NAVBAR
+====================================================
+
+navbar-expand-lg
+↓
+Se expande en pantallas grandes
+
+bg-dark
+↓
+Fondo oscuro
+
+navbar-dark
+↓
+Texto claro
+
+====================================================
+-->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="#">
+            📊 Dashboard Oaxaca
+        </a>
+
+        <!--
+        Botón hamburguesa
+        aparece automáticamente
+        en móviles
+        -->
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menu">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <!-- Menú -->
+
+        <div class="collapse navbar-collapse" id="menu">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        Inicio
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Indicadores
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Acerca de
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!--
+====================================================
+HERO
+====================================================
+
+Imagen principal del dashboard.
+
+Posteriormente se colocará la imagen
+como fondo mediante CSS.
+
+====================================================
+-->
+
+<header class="hero">
+
+    <div class="hero-overlay">
+
+        <div class="container">
+
+            <h1 class="display-3 fw-bold">
+
+                Dashboard Oaxaca
+
+            </h1>
+
+            <p class="lead">
+
+                Indicadores demográficos
+                y percepción social
+
+            </p>
+
+            <p>
+
+                Fuente:
+                Data Buen Gobierno,
+                INEGI y ENCIG
+
+            </p>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!--
+====================================================
+BOTONES DIDÁCTICOS JQUERY
+====================================================
+
+Estos botones permitirán demostrar:
+
+1. Selectores
+2. Eventos
+3. Manipulación CSS
+4. Efectos
+
+====================================================
+-->
+
+<section class="container my-4">
+
+    <div class="row text-center">
+
+        <div class="col-md-4">
+
+            <button
+                id="btnTema"
+                class="btn btn-success w-100">
+
+                Cambiar Tema
+
+            </button>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <button
+                id="btnResaltar"
+                class="btn btn-warning w-100">
+
+                Resaltar Gráficas
+
+            </button>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <button
+                id="btnInterpretacion"
+                class="btn btn-primary w-100">
+
+                Mostrar / Ocultar Interpretación
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--
+====================================================
+GRID PRINCIPAL
+====================================================
+
+row
+↓
+Fila de Bootstrap
+
+col-lg-6
+↓
+2 columnas en escritorio
+
+col-12
+↓
+1 columna en móvil
+
+====================================================
+-->
+
+<main class="container my-5">
+
+    <div class="row g-4">
+
+        <!-- ===================== -->
+        <!-- CELDA 1 -->
+        <!-- ===================== -->
+
+        <div class="col-lg-6 col-12">
+
+            <div class="card dashboard-card h-100">
+
+                <div class="card-body">
+
+                    <h3>
+
+                        Población por sexo
+
+                    </h3>
+
+                    <canvas id="graficaSexo"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- CELDA 2 -->
+        <!-- ===================== -->
+
+        <div class="col-lg-6 col-12">
+
+            <div class="card dashboard-card h-100">
+
+                <div class="card-body">
+
+                    <h3>
+
+                        Población por grupo de edad
+
+                    </h3>
+
+                    <canvas id="graficaEdad"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- CELDA 3 -->
+        <!-- ===================== -->
+
+        <div class="col-lg-6 col-12">
+
+            <div class="card dashboard-card h-100">
+
+                <div class="card-body">
+
+                    <h3>
+
+                        Problemas sociales percibidos
+
+                    </h3>
+
+                    <!--
+                    jQCloud utilizará
+                    este contenedor.
+                    -->
+
+                    <div id="nubePalabras"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- CELDA 4 -->
+        <!-- ===================== -->
+
+        <div class="col-lg-6 col-12">
+
+            <div class="card dashboard-card h-100">
+
+                <div class="card-body">
+
+                    <h3>
+
+                        Interpretación de resultados
+
+                    </h3>
+
+                    <!--
+                    ACORDEÓN BOOTSTRAP
+                    -->
+
+                    <div
+                        class="accordion"
+                        id="acordeonDashboard">
+
+                        <!-- PANEL 1 -->
+
+                        <div class="accordion-item">
+
+                            <h2 class="accordion-header">
+
+                                <button
+                                    class="accordion-button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#panel1">
+
+                                    Distribución por sexo
+
+                                </button>
+
+                            </h2>
+
+                            <div
+                                id="panel1"
+                                class="accordion-collapse collapse show">
+
+                                <div class="accordion-body">
+
+                                    Oaxaca presenta una mayor
+                                    población femenina que masculina.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- PANEL 2 -->
+
+                        <div class="accordion-item">
+
+                            <h2 class="accordion-header">
+
+                                <button
+                                    class="accordion-button collapsed"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#panel2">
+
+                                    Distribución por edad
+
+                                </button>
+
+                            </h2>
+
+                            <div
+                                id="panel2"
+                                class="accordion-collapse collapse">
+
+                                <div class="accordion-body">
+
+                                    Los grupos jóvenes representan
+                                    una proporción importante de la población.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- PANEL 3 -->
+
+                        <div class="accordion-item">
+
+                            <h2 class="accordion-header">
+
+                                <button
+                                    class="accordion-button collapsed"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#panel3">
+
+                                    Problemas sociales percibidos
+
+                                </button>
+
+                            </h2>
+
+                            <div
+                                id="panel3"
+                                class="accordion-collapse collapse">
+
+                                <div class="accordion-body">
+
+                                    Inseguridad y corrupción
+                                    aparecen como los problemas
+                                    más relevantes.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<!--
+====================================================
+FOOTER
+====================================================
+-->
+
+<footer class="bg-dark text-white text-center p-4">
+
+    Dashboard Oaxaca
+    | Bootstrap 5
+    | jQuery 3.7.1
+    | Chart.js
+    | jQCloud
+
+</footer>
+
+<!--
+====================================================
+LIBRERÍAS JAVASCRIPT
+====================================================
+-->
+
+<!-- Bootstrap -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- jQuery -->
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- Chart.js -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- jQCloud -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqcloud/1.0.4/jqcloud.min.js"></script>
+
+<!--
+====================================================
+ARCHIVOS DEL PROYECTO
+====================================================
+-->
+
+<script src="js/datos.js"></script>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>

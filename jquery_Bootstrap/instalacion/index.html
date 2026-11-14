@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>Práctica 1 - Instalación jQuery</title>
+
+    <!--
+    =====================================
+    CDN OFICIAL DE JQUERY
+    =====================================
+
+    Permite utilizar jQuery sin descargar
+    ningún archivo.
+
+    =====================================
+    -->
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</head>
+
+<body>
+
+    <h1 id="mensaje">
+
+        Cargando...
+
+    </h1>
+
+    <script>
+
+        /*
+        ================================
+        DOCUMENT READY
+        ================================
+
+        Se ejecuta cuando el HTML
+        terminó de cargarse.
+        */
+
+        $(document).ready(function(){
+
+            $("#mensaje")
+                .text("jQuery instalado correctamente");
+
+        });
+
+    </script>
+
+</body>
+
+</html>
