@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6.4 Widgets - Ejemplo 1: Calendario (Datepicker) y Autocompletado</title>
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 650px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    .campo-grupo {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    input[type="text"] {
+      width: 280px;
+      padding: 8px 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>6.4 Widgets: Datepicker y Autocomplete</h2>
+  <p>Interactúa con los campos del formulario para probar ambos widgets:</p>
+
+  <div class="campo-grupo">
+    <label for="fecha-examen">1. Fecha de presentación de proyecto (Datepicker):</label>
+    <input type="text" id="fecha-examen" placeholder="Haz clic aquí para abrir el calendario">
+  </div>
+
+  <div class="campo-grupo">
+    <label for="lenguaje">2. Tecnología principal (Autocomplete):</label>
+    <input type="text" id="lenguaje" placeholder="Escribe 'J', 'P' o 'C'...">
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+
+  <script>
+    $(function() {
+      // ===================================================================
+      // WIDGET 1: DATEPICKER (Selector de fecha en calendario)
+      // ===================================================================
+      $("#fecha-examen").datepicker({
+        dateFormat: "dd/mm/yy", // Formato día/mes/año (ej. 20/11/2026)
+        minDate: 0,             // Bloquea días anteriores a hoy (0 = fecha actual)
+        maxDate: "+2M"          // Permite elegir máximo hasta 2 meses hacia adelante
+      });
+
+      // ===================================================================
+      // WIDGET 2: AUTOCOMPLETE (Sugerencias mientras el usuario escribe)
+      // ===================================================================
+      let tecnologiasWeb = [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "jQuery",
+        "jQuery UI",
+        "Python",
+        "PHP",
+        "Java",
+        "C#",
+        "TypeScript",
+        "React",
+        "SQL"
+      ];
+
+      $("#lenguaje").autocomplete({
+        source: tecnologiasWeb, // Arreglo de palabras donde buscará coincidencias
+        minLength: 1            // Muestra sugerencias desde la primera letra escrita
+      });
+    });
+
+    /* RETO PARA PRACTICAR:
+       Agrega tus propios lenguajes o herramientas favoritas al arreglo
+       `tecnologiasWeb` y prueba buscarlas en el campo de texto. */
+  </script>
+</body>
+</html>

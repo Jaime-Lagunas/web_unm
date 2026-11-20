@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6.4 Widgets - Ejemplo 2: Pestañas (Tabs) y Ventana Modal (Dialog)</title>
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>6.4 Widgets: Pestañas (Tabs) y Ventana Modal (Dialog)</h2>
+
+  <!-- =====================================================================
+       ESTRUCTURA HTML PARA TABS:
+       Requiere un contenedor principal (div), una lista <ul> con enlaces <a>
+       cuyo href coincida con el id de cada <div> de contenido.
+       ===================================================================== -->
+  <div id="pestanas-curso">
+    <ul>
+      <li><a href="#tab-descripcion">Descripción</a></li>
+      <li><a href="#tab-requisitos">Requisitos</a></li>
+      <li><a href="#tab-evaluacion">Evaluación</a></li>
+    </ul>
+
+    <div id="tab-descripcion">
+      <p>En este módulo aprenderás a construir interfaces interactivas profesionales utilizando los componentes de jQuery UI.</p>
+    </div>
+
+    <div id="tab-requisitos">
+      <p>Conocimientos básicos de estructura HTML5, selectores CSS3 y sintaxis fundamental de jQuery.</p>
+    </div>
+
+    <div id="tab-evaluacion">
+      <p>Entrega de carpeta de prácticas funcionales (60%) y desarrollo de mini proyecto integrador (40%).</p>
+    </div>
+  </div>
+
+  <br>
+  <!-- Botón que abrirá la ventana emergente -->
+  <button id="btn-abrir-modal">Ver Aviso Importante</button>
+
+  <!-- =====================================================================
+       ESTRUCTURA HTML PARA DIALOG (VENTANA MODAL):
+       El atributo 'title' del div se convierte automáticamente en el título
+       de la barra superior de la ventana emergente.
+       ===================================================================== -->
+  <div id="ventana-modal" title="Aviso Académico">
+    <p>Recuerda guardar tus archivos con extensión <strong>.html</strong> y probarlos en tu navegador antes de entregar.</p>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+
+  <script>
+    $(function() {
+      // 1. Inicializamos el widget Tabs
+      $("#pestanas-curso").tabs();
+
+      // 2. Estilizamos el botón con jQuery UI
+      $("#btn-abrir-modal").button();
+
+      // 3. Configuramos la ventana Dialog
+      $("#ventana-modal").dialog({
+        autoOpen: false, // Evita que la ventana aparezca abierta apenas carga la página
+        modal: true,     // Oscurece el resto de la página y bloquea clics fuera de la ventana
+        width: 400,      // Ancho en píxeles
+        buttons: {
+          // Definimos botones personalizados dentro del cuadro de diálogo
+          "Entendido": function() {
+            $(this).dialog("close"); // Cierra la ventana modal
+          }
+        }
+      });
+
+      // 4. Abrimos la ventana modal al hacer clic en el botón
+      $("#btn-abrir-modal").on("click", function() {
+        $("#ventana-modal").dialog("open");
+      });
+    });
+
+    /* RETO PARA PRACTICAR:
+       Agrega una cuarta pestaña llamada "Bibliografía" siguiendo la misma estructura
+       de <li><a href="#tab-biblio">...</a></li> y su respectivo <div id="tab-biblio">. */
+  </script>
+</body>
+</html>

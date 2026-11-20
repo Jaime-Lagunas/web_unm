@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservas, Ubicación y AJAX — Cafetería Aroma y Grano</title>
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- BARRA DE NAVEGACIÓN -->
+  <nav class="navbar">
+    <a href="index.html" class="marca">☕ Aroma y Grano</a>
+    <div class="nav-links">
+      <a href="index.html">Inicio y Servicios</a>
+      <a href="menu.html">Menú Interactivo</a>
+      <a href="reservas-contacto.html" class="activo">Reservas, Mapa y AJAX</a>
+    </div>
+  </nav>
+
+  <main class="contenedor">
+
+    <!-- RESERVA DE MESA CON DATEPICKER (WIDGET DATEPICKER - TEMA 6.4) + AJAX POST (TEMA 5) -->
+    <section class="seccion-card">
+      <span class="badge-tema">Tema 6.4: Widget Datepicker + Tema 5: Peticiones AJAX ($.post)</span>
+      <h2>Reserva tu Mesa</h2>
+      <p>Selecciona la fecha de tu visita usando el calendario de jQuery UI y envía tu solicitud vía AJAX sin recargar la página:</p>
+
+      <form id="form-reserva" style="display: grid; gap: 14px; max-width: 480px;">
+        <div>
+          <label for="nombre-cliente"><strong>Nombre completo:</strong></label><br>
+          <input type="text" id="nombre-cliente" required placeholder="Ej. Sofía Hernández"
+                 style="width: 100%; padding: 9px; border: 1px solid #aaa; border-radius: 5px;">
+        </div>
+
+        <div>
+          <label for="fecha-reserva"><strong>Fecha de reserva (Datepicker):</strong></label><br>
+          <input type="text" id="fecha-reserva" required placeholder="Haz clic para elegir fecha"
+                 style="width: 100%; padding: 9px; border: 1px solid #aaa; border-radius: 5px;">
+        </div>
+
+        <div>
+          <label for="personas-reserva"><strong>Número de personas:</strong></label><br>
+          <select id="personas-reserva" style="width: 100%; padding: 9px; border: 1px solid #aaa; border-radius: 5px;">
+            <option value="1">1 persona (Barra / Estudio)</option>
+            <option value="2" selected>2 personas</option>
+            <option value="4">4 personas</option>
+            <option value="6">Grupo de 6 personas</option>
+          </select>
+        </div>
+
+        <div>
+          <button type="submit" class="btn-cafe">Confirmar Reserva por AJAX ($.post)</button>
+        </div>
+      </form>
+
+      <div id="resultado-reserva" style="margin-top: 16px; padding: 12px; border-radius: 6px; display: none;"></div>
+    </section>
+
+    <!-- CONSULTA REMOTA DE SUGERENCIAS VÍA AJAX GET (TEMA 5) -->
+    <section class="seccion-card">
+      <span class="badge-tema">Tema 5: Petición Asíncrona GET con $.ajax()</span>
+      <h2>Notas del Barista / Sugerencias Remotas (AJAX GET)</h2>
+      <p>Consulta datos en tiempo real desde un servicio externo (JSONPlaceholder) sin recargar la página:</p>
+      <button id="btn-cargar-ajax" class="btn-cafe">Cargar Sugerencia del Día ($.ajax GET)</button>
+      <div id="contenedor-ajax" style="margin-top: 14px; padding: 14px; background: #faf6f0; border-left: 4px solid #c68b59; border-radius: 5px;">
+        Presiona el botón para realizar la petición AJAX.
+      </div>
+    </section>
+
+    <!-- UBICACIÓN EN GOOGLE MAPS Y CONTACTO DIRECTO -->
+    <section class="seccion-card">
+      <span class="badge-tema">Ubicación Geográfica y Contacto Directo</span>
+      <h2>Ubicación en Google Maps</h2>
+      <p>Visítanos en el corazón de Oaxaca de Juárez (ejemplo de mapa incrustado con iframe de Google Maps):</p>
+
+      <div style="border-radius: 8px; overflow: hidden; border: 1px solid #ddd;">
+        <iframe
+          title="Ubicación Cafetería Aroma y Grano en Oaxaca"
+          src="https://www.google.com/maps?q=Zocalo+Oaxaca+de+Juarez,+Oaxaca,+Mexico&output=embed"
+          width="100%"
+          height="340"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <p style="margin-top: 14px;">
+        ¿Prefieres pedido o reserva rápida por chat? Usa el botón de <strong>WhatsApp</strong> en la esquina inferior derecha.
+      </p>
+    </section>
+
+  </main>
+
+  <a href="https://wa.me/529510000000?text=Hola%20Aroma%20y%20Grano,%20quiero%20reservar%20una%20mesa"
+     target="_blank" class="btn-whatsapp">💬 WhatsApp Reservas</a>
+
+  <footer>
+    <p>Cafetería <strong>Aroma y Grano</strong> — Práctica Integradora de jQuery y jQuery UI</p>
+    <p>Navega a: <a href="index.html">Inicio y Servicios</a> | <a href="menu.html">Menú Interactivo</a></p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+
+  <script>
+    $(function() {
+
+      // [Tema 6.4 - Widget Datepicker] Configura el calendario de reserva evitando fechas pasadas
+      $("#fecha-reserva").datepicker({
+        dateFormat: "dd/mm/yy",
+        minDate: 0,
+        maxDate: "+3M"
+      });
+
+      // [Tema 5 - AJAX POST] Envía los datos del formulario de reserva sin recargar la página
+      $("#form-reserva").on("submit", function(evento) {
+        evento.preventDefault(); // Evita el envío tradicional que recargaría el navegador
+
+        let datosReserva = {
+          cliente: $("#nombre-cliente").val(),
+          fecha: $("#fecha-reserva").val(),
+          personas: $("#personas-reserva").val()
+        };
+
+        $.post("https://jsonplaceholder.typicode.com/posts", datosReserva, function(respuesta) {
+          $("#resultado-reserva")
+            .css({ "background-color": "#e8f5e9", "border": "1px solid #2e7d32", "color": "#1b5e20" })
+            .html(
+              "<strong>¡Reserva registrada por AJAX!</strong> Folio #" + respuesta.id +
+              " para <strong>" + datosReserva.cliente + "</strong> el día <strong>" +
+              datosReserva.fecha + "</strong> (" + datosReserva.personas + " personas)."
+            )
+            .fadeIn(300)
+            .effect("bounce", { times: 2 }, 400);
+        });
+      });
+
+      // [Tema 5 - AJAX GET] Obtiene un registro JSON remoto mediante $.ajax()
+      $("#btn-cargar-ajax").on("click", function() {
+        $("#contenedor-ajax").text("Consultando sugerencia en el servidor...");
+
+        $.ajax({
+          url: "https://jsonplaceholder.typicode.com/posts/1",
+          method: "GET",
+          dataType: "json",
+          success: function(post) {
+            $("#contenedor-ajax").html(
+              "<strong>Sugerencia remota recibida (ID #" + post.id + "):</strong><br>" +
+              "<em>Título:</em> " + post.title + "<br>" +
+              "<em>Nota:</em> " + post.body
+            );
+          },
+          error: function() {
+            $("#contenedor-ajax")
+              .text("No se pudo conectar con el servicio remoto en este momento.")
+              .effect("shake", { times: 3, distance: 8 }, 400);
+          }
+        });
+      });
+
+    });
+  </script>
+</body>
+</html>

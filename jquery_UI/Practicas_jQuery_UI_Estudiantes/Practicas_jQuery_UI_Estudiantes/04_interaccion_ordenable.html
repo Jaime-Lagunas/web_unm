@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6.3 Interacciones - Ejemplo 2: Lista Ordenable (Sortable)</title>
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 650px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    #lista-prioridades {
+      list-style-type: none; /* Quitamos las viñetas por defecto */
+      padding: 0;
+      width: 340px;
+    }
+    #lista-prioridades li {
+      margin: 8px 0;
+      padding: 12px 16px;
+      background-color: #e8f0fe;
+      border: 1px solid #0769ad;
+      border-radius: 5px;
+      cursor: move; /* Indica visualmente que el ítem se puede mover */
+      font-weight: 500;
+    }
+    #lista-prioridades li:hover {
+      background-color: #d2e3fc;
+    }
+    #orden-actual {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #fff3cd;
+      border-left: 4px solid #ffc107;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>6.3 Interacciones: Lista Ordenable (.sortable)</h2>
+  <p>Arrastra las materias hacia arriba o hacia abajo para ordenarlas según tu prioridad:</p>
+
+  <ul id="lista-prioridades">
+    <li>Desarrollo Web Frontend</li>
+    <li>Bases de Datos Relacionales</li>
+    <li>Ingeniería de Software</li>
+    <li>Redes de Computadoras</li>
+  </ul>
+
+  <div id="orden-actual">Mueve algún elemento de la lista para ver el cambio detectado.</div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+
+  <script>
+    $(function() {
+      // .sortable() convierte los hijos de un contenedor (como <li> dentro de <ul>)
+      // en elementos que el usuario puede reordenar libremente
+      $("#lista-prioridades").sortable({
+        placeholder: "ui-state-highlight", // Resalta el espacio vacío mientras arrastras
+
+        // El evento 'update' se dispara cada vez que el orden de la lista cambia
+        update: function() {
+          // Obtenemos el texto del primer <li> actual usando .first()
+          let primeraMateria = $("#lista-prioridades li").first().text();
+
+          // Actualizamos el mensaje informativo en pantalla
+          $("#orden-actual").html(
+            "Tu prioridad número 1 ahora es: <strong>" + primeraMateria + "</strong>"
+          );
+        }
+      });
+    });
+
+    /* RETO PARA PRACTICAR:
+       Utiliza el método .each() sobre $("#lista-prioridades li") dentro del evento
+       'update' para mostrar en consola el orden completo de todas las materias. */
+  </script>
+</body>
+</html>

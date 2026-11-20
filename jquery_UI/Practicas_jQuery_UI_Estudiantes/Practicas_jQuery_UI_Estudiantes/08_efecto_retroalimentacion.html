@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6.5 Efectos - Ejemplo 2: Efectos Visuales (.effect)</title>
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 650px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    #caja-alerta {
+      width: 320px;
+      padding: 20px;
+      border: 2px solid #dc3545;
+      background-color: #f8d7da;
+      color: #721c24;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 8px 14px;
+      margin-right: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>6.5 Efectos: Retroalimentación Visual con .effect()</h2>
+  <p>Estos efectos son muy útiles en interfaces reales para alertar al usuario sobre errores de validación o llamar su atención sin recargar la página:</p>
+
+  <div id="caja-alerta">
+    <strong>Error de validación:</strong> Por favor verifica tu contraseña.
+  </div>
+
+  <button id="btn-sacudir">Efecto Shake (Sacudir)</button>
+  <button id="btn-rebotar">Efecto Bounce (Rebotar)</button>
+  <button id="btn-pulsar">Efecto Pulsate (Parpadear)</button>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+
+  <script>
+    $(function() {
+      // 1. Efecto 'shake': sacude el elemento horizontalmente (clásico en formularios de login)
+      $("#btn-sacudir").on("click", function() {
+        $("#caja-alerta").effect("shake", {
+          times: 3,     // Número de sacudidas
+          distance: 10  // Distancia en píxeles de cada movimiento
+        }, 400);        // Duración total en milisegundos
+      });
+
+      // 2. Efecto 'bounce': hace rebotar el elemento verticalmente
+      $("#btn-rebotar").on("click", function() {
+        $("#caja-alerta").effect("bounce", {
+          times: 3
+        }, 500);
+      });
+
+      // 3. Efecto 'pulsate': hace parpadear la opacidad del elemento para destacar un aviso
+      $("#btn-pulsar").on("click", function() {
+        $("#caja-alerta").effect("pulsate", {
+          times: 2
+        }, 500);
+      });
+    });
+
+    /* RETO PARA PRACTICAR:
+       Prueba sustituir "pulsate" por otro efecto oficial de jQuery UI como
+       "highlight" o "puff" y observa su comportamiento en el navegador. */
+  </script>
+</body>
+</html>

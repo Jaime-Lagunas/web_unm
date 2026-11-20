@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6.2 Instalación - Ejemplo 1: Carga mediante CDN Oficial</title>
+
+  <!-- =====================================================================
+       PASO 1: Cargar la hoja de estilos CSS de jQuery UI.
+       Este archivo contiene el diseño, bordes, colores e iconos de todos
+       los componentes gráficos de jQuery UI.
+       ===================================================================== -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+
+  <style>
+    /* Estilos propios de la página para que se vea limpia y ordenada */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 650px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #f9fafb;
+      color: #1f2328;
+    }
+    .caja-resultado {
+      padding: 15px;
+      border-left: 5px solid #0769ad;
+      background-color: #e8f0fe;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>6.2 Instalación: Verificación mediante CDN Oficial</h2>
+  <p>Este ejercicio comprueba que las 3 piezas de jQuery UI cargaron en el orden correcto:</p>
+
+  <!-- Elemento donde mostraremos el mensaje de confirmación desde JavaScript -->
+  <div id="mensaje-instalacion" class="caja-resultado">
+    Comprobando librerías... (Si ves este texto fijo, revisa tu conexión a internet)
+  </div>
+
+  <!-- =====================================================================
+       PASO 2: Cargar primero la biblioteca principal jQuery Core.
+       jQuery UI depende completamente de jQuery Core, por eso SIEMPRE
+       debe ir antes que el script de jQuery UI.
+       ===================================================================== -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- =====================================================================
+       PASO 3: Cargar después la extensión jQuery UI JavaScript.
+       ===================================================================== -->
+  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+
+  <script>
+    // $(function() { ... }) espera a que todo el HTML esté listo antes de ejecutar el código
+    $(function() {
+      // Verificamos si el objeto $.ui existe en la memoria del navegador
+      if ($.ui) {
+        // Modificamos el texto del div mostrando las versiones exactas cargadas
+        $("#mensaje-instalacion").text(
+          "¡Instalación exitosa! jQuery Core v" + $.fn.jquery + " + jQuery UI v" + $.ui.version
+        );
+      } else {
+        $("#mensaje-instalacion").text("Error: jQuery UI no se cargó correctamente.");
+      }
+    });
+
+    /* RETO PARA PRACTICAR:
+       1. Intenta invertir el orden de los <script> (poniendo jquery-ui antes que jquery)
+          y abre la consola del navegador (F12) para observar el error que ocurre.
+       2. Luego vuelve a dejarlos en el orden correcto. */
+  </script>
+</body>
+</html>

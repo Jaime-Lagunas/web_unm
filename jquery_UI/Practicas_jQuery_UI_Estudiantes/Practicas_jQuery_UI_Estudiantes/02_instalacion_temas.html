@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6.2 Instalación - Ejemplo 2: Cambio de Tema Visual (ThemeRoller)</title>
+
+  <!-- =====================================================================
+       PERSONALIZACIÓN DE TEMA VISUAL:
+       Puedes cambiar la apariencia completa de todos los botones, calendarios
+       y ventanas cambiando únicamente el nombre del tema en esta URL:
+       Temas oficiales disponibles: 'base', 'smoothness', 'ui-darkness',
+       'redmond', 'sunny', 'overcast', 'le-frog', 'start'
+       ===================================================================== -->
+  <link id="tema-css" rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/redmond/jquery-ui.css">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 650px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    .panel-demo {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>6.2 Instalación: Prueba de Temas Visuales (ThemeRoller)</h2>
+  <p>Observa cómo los elementos HTML adoptan automáticamente el diseño del tema cargado:</p>
+
+  <!-- Botón que será transformado por jQuery UI -->
+  <button id="btn-prueba">Botón con Estilo jQuery UI</button>
+
+  <!-- Selector extra para que puedas probar distintos temas en vivo -->
+  <label for="selector-tema" style="margin-left: 15px;">Cambiar tema en vivo:</label>
+  <select id="selector-tema">
+    <option value="redmond" selected>Redmond (Azul clásico)</option>
+    <option value="ui-darkness">UI Darkness (Oscuro)</option>
+    <option value="sunny">Sunny (Cálido)</option>
+    <option value="smoothness">Smoothness (Gris minimalista)</option>
+    <option value="base">Base (Neutro)</option>
+  </select>
+
+  <!-- Contenedor con clases oficiales de tema de jQuery UI (ui-widget, ui-widget-content) -->
+  <div class="panel-demo ui-widget ui-widget-content ui-corner-all">
+    <h3 class="ui-widget-header ui-corner-all" style="padding: 8px; margin-top: 0;">
+      Tarjeta Estilizada con el Tema
+    </h3>
+    <p>Este contenedor utiliza las clases estándar de ThemeRoller para adaptar sus colores automáticamente.</p>
+  </div>
+
+  <!-- Librerías en orden obligatorio: 1. jQuery Core -> 2. jQuery UI -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+
+  <script>
+    $(function() {
+      // 1. Convertimos el <button> HTML estándar en un botón enriquecido de jQuery UI
+      $("#btn-prueba").button({
+        icon: "ui-icon-star" // Agregamos un icono integrado de la librería
+      });
+
+      // 2. Evento extra: cuando cambias la opción del <select>, reemplazamos el href del <link>
+      $("#selector-tema").on("change", function() {
+        let nuevoTema = $(this).val();
+        let nuevaUrl = "https://code.jquery.com/ui/1.14.1/themes/" + nuevoTema + "/jquery-ui.css";
+        $("#tema-css").attr("href", nuevaUrl);
+      });
+    });
+
+    /* RETO PARA PRACTICAR:
+       Cambia el icono del botón sustituyendo "ui-icon-star" por "ui-icon-heart"
+       o "ui-icon-check" y recarga la página. */
+  </script>
+</body>
+</html>

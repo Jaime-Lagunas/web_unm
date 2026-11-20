@@ -1,0 +1,189 @@
+/* ==========================================================================
+   HOJA DE ESTILOS COMPARTIDA - CAFETERÍA "AROMA Y GRANO"
+   Complementa el tema de jQuery UI con diseño limpio, responsivo y cálido.
+   ========================================================================== */
+:root {
+  --cafe-oscuro: #2c1810;
+  --cafe-medio: #6f4e37;
+  --cafe-claro: #d7ccc8;
+  --crema-fondo: #faf6f0;
+  --blanco: #ffffff;
+  --acento-dorado: #c68b59;
+  --verde-whatsapp: #25d366;
+  --texto-principal: #2b2118;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--crema-fondo);
+  color: var(--texto-principal);
+  line-height: 1.6;
+}
+
+/* Barra de navegación superior */
+.navbar {
+  background-color: var(--cafe-oscuro);
+  color: var(--blanco);
+  padding: 14px 28px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.marca {
+  font-size: 1.35rem;
+  font-weight: bold;
+  color: var(--acento-dorado);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--blanco);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background-color 0.25s;
+}
+
+.nav-links a:hover,
+.nav-links a.activo {
+  background-color: var(--cafe-medio);
+  color: #ffe0b2;
+}
+
+/* Sección Hero */
+.hero {
+  background: linear-gradient(rgba(44, 24, 16, 0.72), rgba(44, 24, 16, 0.72)),
+              url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+  color: var(--blanco);
+  padding: 64px 24px;
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 0 0 12px;
+  font-size: 2.3rem;
+}
+
+.hero p {
+  max-width: 680px;
+  margin: 0 auto 24px;
+  font-size: 1.1rem;
+  color: #f5ebe0;
+}
+
+.contenedor {
+  max-width: 1050px;
+  margin: 32px auto;
+  padding: 0 20px;
+}
+
+.seccion-card {
+  background: var(--blanco);
+  border-radius: 10px;
+  padding: 26px;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 14px rgba(44, 24, 16, 0.08);
+}
+
+.seccion-card h2 {
+  margin-top: 0;
+  color: var(--cafe-oscuro);
+  border-bottom: 2px solid var(--acento-dorado);
+  padding-bottom: 8px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.tarjeta-item {
+  border: 1px solid #e6ddd5;
+  border-radius: 8px;
+  padding: 18px;
+  background: #fffdfb;
+}
+
+.precio {
+  font-weight: bold;
+  color: var(--cafe-medio);
+  font-size: 1.1rem;
+}
+
+.badge-tema {
+  display: inline-block;
+  background: #efe6dc;
+  color: var(--cafe-oscuro);
+  font-size: 0.78rem;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.btn-cafe {
+  background-color: var(--cafe-medio);
+  color: var(--blanco);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 8px;
+  margin-top: 6px;
+}
+
+.btn-cafe:hover {
+  background-color: var(--cafe-oscuro);
+}
+
+/* Botón flotante de WhatsApp */
+.btn-whatsapp {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  background-color: var(--verde-whatsapp);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 13px 18px;
+  border-radius: 50px;
+  font-weight: bold;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  z-index: 1000;
+}
+
+.btn-whatsapp:hover {
+  background-color: #1ebe5d;
+}
+
+/* Pie de página */
+footer {
+  background-color: var(--cafe-oscuro);
+  color: #e6ddd5;
+  text-align: center;
+  padding: 24px 16px;
+  margin-top: 48px;
+}
+
+footer a {
+  color: var(--acento-dorado);
+}

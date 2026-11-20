@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6.5 Efectos - Ejemplo 1: Animación de Colores con .animate()</title>
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 650px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    #tarjeta-estado {
+      width: 300px;
+      padding: 25px;
+      background-color: #e8f0fe; /* Color azul claro inicial */
+      color: #1b365d;            /* Texto azul oscuro inicial */
+      border: 2px solid #0769ad;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>6.5 Efectos: Transición Suave de Colores</h2>
+  <p>En jQuery básico, <code>.animate()</code> solo funciona con valores numéricos (ancho, alto, opacidad). jQuery UI extiende este método para animar <strong>colores</strong> suavemente:</p>
+
+  <div id="tarjeta-estado">Estado actual: Pendiente de revisión</div>
+
+  <button id="btn-aprobar">Simular Aprobación</button>
+  <button id="btn-reiniciar">Reiniciar Estado</button>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+
+  <script>
+    $(function() {
+      // Botón 1: Transiciona gradualmente hacia verde en 800 milisegundos
+      $("#btn-aprobar").on("click", function() {
+        $("#tarjeta-estado")
+          .text("Estado actual: ¡Proyecto Aprobado!")
+          .animate({
+            backgroundColor: "#28a745", // Transición gradual del fondo a verde
+            color: "#ffffff",           // Transición gradual de la letra a blanco
+            borderColor: "#1e7e34",     // Transición gradual del borde
+            width: "360px"              // También podemos combinar propiedades numéricas
+          }, 800);
+      });
+
+      // Botón 2: Regresa los colores y dimensiones a su estado original
+      $("#btn-reiniciar").on("click", function() {
+        $("#tarjeta-estado")
+          .text("Estado actual: Pendiente de revisión")
+          .animate({
+            backgroundColor: "#e8f0fe",
+            color: "#1b365d",
+            borderColor: "#0769ad",
+            width: "300px"
+          }, 600);
+      });
+    });
+
+    /* RETO PARA PRACTICAR:
+       Crea un tercer botón llamado "Simular Rechazo" que anime la tarjeta hacia
+       un fondo rojo ("#dc3545") con texto blanco ("#ffffff"). */
+  </script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú de Bebidas — Cafetería Aroma y Grano</title>
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- BARRA DE NAVEGACIÓN -->
+  <nav class="navbar">
+    <a href="index.html" class="marca">☕ Aroma y Grano</a>
+    <div class="nav-links">
+      <a href="index.html">Inicio y Servicios</a>
+      <a href="menu.html" class="activo">Menú Interactivo</a>
+      <a href="reservas-contacto.html">Reservas, Mapa y AJAX</a>
+    </div>
+  </nav>
+
+  <main class="contenedor">
+
+    <!-- BÚSQUEDA CON AUTOCOMPLETE (WIDGET AUTOCOMPLETE - TEMA 6.4) Y FILTRO (TEMA 5) -->
+    <section class="seccion-card">
+      <span class="badge-tema">Tema 5: Eventos de Teclado (keyup) + Tema 6.4: Widget Autocomplete</span>
+      <h2>Menú de Bebidas y Especialidades</h2>
+      <p>Escribe el nombre de una bebida (usa el autocompletado de jQuery UI) o filtra las tarjetas al instante:</p>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 18px;">
+        <input type="text" id="buscador-bebida" placeholder="Buscar bebida (ej. Matcha, Latte, Cold Brew)..."
+               style="padding: 10px 14px; width: 320px; border: 1px solid #aaa; border-radius: 6px; font-size: 15px;">
+        <button id="btn-mostrar-todas" class="btn-cafe">Mostrar Todas</button>
+        <button id="btn-resaltar-frias" class="btn-cafe">Resaltar Bebidas Frías (.addClass / .fadeToggle)</button>
+      </div>
+
+      <!-- CATÁLOGO DE BEBIDAS -->
+      <div id="catalogo-bebidas" class="grid-3">
+        <div class="tarjeta-item bebida-card" data-nombre="Espresso Doble Caliente" data-tipo="caliente">
+          <span class="badge-tema">Caliente</span>
+          <h3>Espresso Doble</h3>
+          <p>Intenso, con notas a cacao amargo y avellana tostada.</p>
+          <p class="precio">$42 MXN</p>
+          <button class="btn-cafe btn-agregar-orden" data-item="Espresso Doble ($42 MXN)">Agregar a mi orden</button>
+        </div>
+
+        <div class="tarjeta-item bebida-card" data-nombre="Latte Vainilla Artesanal" data-tipo="caliente">
+          <span class="badge-tema">Caliente</span>
+          <h3>Latte Vainilla</h3>
+          <p>Espresso suave con leche vaporizada y jarabe natural de vainilla.</p>
+          <p class="precio">$55 MXN</p>
+          <button class="btn-cafe btn-agregar-orden" data-item="Latte Vainilla ($55 MXN)">Agregar a mi orden</button>
+        </div>
+
+        <div class="tarjeta-item bebida-card" data-nombre="Cold Brew Cítrico Frío" data-tipo="fria">
+          <span class="badge-tema">Fría</span>
+          <h3>Cold Brew Cítrico</h3>
+          <p>Infusión en frío de 18 horas con un toque refrescante de naranja.</p>
+          <p class="precio">$60 MXN</p>
+          <button class="btn-cafe btn-agregar-orden" data-item="Cold Brew Cítrico ($60 MXN)">Agregar a mi orden</button>
+        </div>
+
+        <div class="tarjeta-item bebida-card" data-nombre="Matcha Latte Frío" data-tipo="fria">
+          <span class="badge-tema">Fría</span>
+          <h3>Matcha Latte</h3>
+          <p>Té verde matcha ceremonial batido con leche fría o bebida vegetal.</p>
+          <p class="precio">$65 MXN</p>
+          <button class="btn-cafe btn-agregar-orden" data-item="Matcha Latte ($65 MXN)">Agregar a mi orden</button>
+        </div>
+
+        <div class="tarjeta-item bebida-card" data-nombre="Capuchino Canela Caliente" data-tipo="caliente">
+          <span class="badge-tema">Caliente</span>
+          <h3>Capuchino Canela</h3>
+          <p>Equilibrio clásico entre espresso, leche cremosa y canela espolvoreada.</p>
+          <p class="precio">$52 MXN</p>
+          <button class="btn-cafe btn-agregar-orden" data-item="Capuchino Canela ($52 MXN)">Agregar a mi orden</button>
+        </div>
+
+        <div class="tarjeta-item bebida-card" data-nombre="Frappé Mocha Chocolate Frío" data-tipo="fria">
+          <span class="badge-tema">Fría</span>
+          <h3>Frappé Mocha</h3>
+          <p>Bebida helada de café, chocolate oscuro y crema batida.</p>
+          <p class="precio">$68 MXN</p>
+          <button class="btn-cafe btn-agregar-orden" data-item="Frappé Mocha ($68 MXN)">Agregar a mi orden</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDEN REORDENABLE (INTERACCIÓN SORTABLE - TEMA 6.3) -->
+    <section class="seccion-card">
+      <span class="badge-tema">Tema 6.3: Interacción Sortable + Tema 5: Manipulación del DOM (.append)</span>
+      <h2>Tu Orden Seleccionada (Arrastra para Reordenar)</h2>
+      <p>Agrega bebidas desde el menú y arrastra los elementos para cambiar el orden de preparación:</p>
+
+      <ul id="lista-orden" style="list-style: none; padding: 0; max-width: 480px;"></ul>
+      <p id="aviso-orden-vacia">Aún no has agregado bebidas a tu orden.</p>
+    </section>
+
+    <!-- PREGUNTAS FRECUENTES DEL MENÚ (WIDGET ACCORDION - TEMA 6.4) -->
+    <section class="seccion-card">
+      <span class="badge-tema">Tema 6.4: Widget Accordion</span>
+      <h2>Preguntas Frecuentes sobre el Menú</h2>
+      <div id="acordeon-menu">
+        <h3>¿Ofrecen leches vegetales sin costo extra?</h3>
+        <div>
+          <p>Contamos con leche de avena, almendra y soya. Consulta las promociones vigentes del día.</p>
+        </div>
+        <h3>¿Puedo pedir menos azúcar o sin endulzantes?</h3>
+        <div>
+          <p>Sí, todas nuestras bebidas de especialidad se preparan al gusto del cliente.</p>
+        </div>
+        <h3>¿Venden bolsas de grano molido o entero?</h3>
+        <div>
+          <p>Sí, manejamos presentaciones de 250g y 500g de café de especialidad.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <a href="https://wa.me/529510000000?text=Hola,%20me%20interesa%20pedir%20del%20menú%20de%20Aroma%20y%20Grano"
+     target="_blank" class="btn-whatsapp">💬 WhatsApp Pedidos</a>
+
+  <footer>
+    <p>Cafetería <strong>Aroma y Grano</strong> — Práctica Integradora de jQuery y jQuery UI</p>
+    <p>Navega a: <a href="index.html">Inicio y Servicios</a> | <a href="reservas-contacto.html">Reservas, Mapa y AJAX</a></p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+
+  <script>
+    $(function() {
+
+      // [Tema 6.4 - Widget Autocomplete] Sugiere nombres de bebidas mientras escribes
+      let nombresBebidas = [
+        "Espresso Doble",
+        "Latte Vainilla",
+        "Cold Brew Cítrico",
+        "Matcha Latte",
+        "Capuchino Canela",
+        "Frappé Mocha"
+      ];
+
+      $("#buscador-bebida").autocomplete({
+        source: nombresBebidas,
+        minLength: 1
+      });
+
+      // [Tema 5 - Eventos] Filtra las tarjetas del menú en tiempo real al soltar una tecla (keyup)
+      $("#buscador-bebida").on("keyup", function() {
+        let termino = $(this).val().toLowerCase();
+        $(".bebida-card").each(function() {
+          let textoTarjeta = $(this).data("nombre").toLowerCase();
+          if (textoTarjeta.indexOf(termino) > -1) {
+            $(this).fadeIn(200);
+          } else {
+            $(this).fadeOut(200);
+          }
+        });
+      });
+
+      // [Tema 5 - Eventos y Efectos] Muestra todas las tarjetas nuevamente
+      $("#btn-mostrar-todas").on("click", function() {
+        $("#buscador-bebida").val("");
+        $(".bebida-card").fadeIn(250);
+      });
+
+      // [Tema 5 - Manipulación DOM/CSS] Resalta visualmente las bebidas frías
+      $("#btn-resaltar-frias").on("click", function() {
+        $(".bebida-card[data-tipo='fria']").each(function() {
+          $(this).css("border", "2px solid #0769ad").effect("bounce", { times: 2 }, 400);
+        });
+      });
+
+      // [Tema 6.3 - Interacción Sortable] Permite reordenar las bebidas agregadas arrastrándolas
+      $("#lista-orden").sortable({
+        cursor: "move"
+      });
+
+      // [Tema 5 - Eventos y Manipulación DOM] Agrega un ítem a la lista reordenable
+      $(".btn-agregar-orden").on("click", function() {
+        let descripcionItem = $(this).data("item");
+        $("#aviso-orden-vacia").hide();
+        $("#lista-orden").append(
+          "<li style='padding: 10px 14px; margin-bottom: 8px; background: #efe6dc; border-left: 4px solid #6f4e37; border-radius: 5px; cursor: move;'>" +
+          "☰ " + descripcionItem +
+          "</li>"
+        );
+      });
+
+      // [Tema 6.4 - Widget Accordion] Convierte las preguntas frecuentes en acordeón desplegable
+      $("#acordeon-menu").accordion({
+        heightStyle: "content",
+        collapsible: true
+      });
+
+    });
+  </script>
+</body>
+</html>

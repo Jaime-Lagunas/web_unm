@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafetería Aroma y Grano — Inicio (jQuery y jQuery UI)</title>
+
+  <!-- 1. Hoja de estilos oficial de jQuery UI (Tema 'smoothness' desde CDN) -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/smoothness/jquery-ui.css">
+  <!-- 2. Estilos propios del sitio -->
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- BARRA DE NAVEGACIÓN COMPARTIDA ENTRE LAS 3 PÁGINAS -->
+  <nav class="navbar">
+    <a href="index.html" class="marca">☕ Aroma y Grano</a>
+    <div class="nav-links">
+      <a href="index.html" class="activo">Inicio y Servicios</a>
+      <a href="menu.html">Menú Interactivo</a>
+      <a href="reservas-contacto.html">Reservas, Mapa y AJAX</a>
+    </div>
+  </nav>
+
+  <!-- SECCIÓN HERO CON EFECTOS DE JQUERY (TEMA 5) -->
+  <header class="hero">
+    <span class="badge-tema">Demostración Práctica: Tema 5 (jQuery) + Tema 6 (jQuery UI)</span>
+    <h1>Café de Especialidad y Repostería Artesanal</h1>
+    <p>Sitio web educativo de 3 páginas que integra eventos, efectos visuales, interacciones de arrastrar/soltar/ordenar, widgets de jQuery UI y peticiones AJAX.</p>
+    <button id="btn-hero-efecto" class="btn-cafe">Probar Efecto SlideToggle en Hero</button>
+    <button id="btn-abrir-promo" class="btn-cafe">Ver Promoción del Día (Dialog)</button>
+    <div id="nota-hero" style="margin-top: 16px; background: rgba(255,255,255,0.15); padding: 10px 16px; border-radius: 6px; display: inline-block;">
+      Hoy 2x1 en Americano de especialidad de 8:00 a 10:00 hrs.
+    </div>
+  </header>
+
+  <main class="contenedor">
+
+    <!-- SECCIÓN DE SERVICIOS CON PESTAÑAS (WIDGET TABS - TEMA 6.4) -->
+    <section class="seccion-card">
+      <span class="badge-tema">Tema 6.4: Widget Tabs + Tema 5: Eventos y Efectos</span>
+      <h2>Nuestros Servicios</h2>
+      <p>Explora las pestañas interactivas de jQuery UI y prueba las animaciones de color y retroalimentación:</p>
+
+      <div id="tabs-servicios">
+        <ul>
+          <li><a href="#serv-barra">Barra de Espresso</a></li>
+          <li><a href="#serv-coworking">Zona de Estudio</a></li>
+          <li><a href="#serv-eventos">Eventos y Catas</a></li>
+        </ul>
+        <div id="serv-barra">
+          <p><strong>Extracción de precisión:</strong> Granos de altura de origen único tostados en pequeños lotes.</p>
+        </div>
+        <div id="serv-coworking">
+          <p><strong>Ambiente universitario:</strong> Mesas amplias, enchufes en cada asiento y Wi-Fi de alta velocidad.</p>
+        </div>
+        <div id="serv-eventos">
+          <p><strong>Catas semanales:</strong> Aprende métodos de filtrado (V60, Chemex, Prensa Francesa) con nuestros baristas.</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <button id="btn-animar-servicio" class="btn-cafe">Animar Color con jQuery UI (.animate)</button>
+        <button id="btn-sacudir-servicio" class="btn-cafe">Efecto Shake de Aviso (.effect)</button>
+      </div>
+    </section>
+
+    <!-- INTERACCIÓN DRAGGABLE + DROPPABLE: ARMA TU COMBO DE DESAYUNO (TEMA 6.3) -->
+    <section class="seccion-card">
+      <span class="badge-tema">Tema 6.3: Interacciones Draggable & Droppable</span>
+      <h2>Arma tu Combo Matutino (Arrastra y Suelta)</h2>
+      <p>Arrastra cualquiera de los productos hacia la <strong>Charola de Combo</strong> para agregarlo:</p>
+
+      <div class="grid-3" style="align-items: start;">
+        <div>
+          <h3>Productos Disponibles</h3>
+          <div class="producto-drag" style="padding: 10px; margin-bottom: 10px; background: #efe6dc; border: 1px solid #6f4e37; border-radius: 6px; cursor: grab;">
+            ☕ Latte Vainilla ($55 MXN)
+          </div>
+          <div class="producto-drag" style="padding: 10px; margin-bottom: 10px; background: #efe6dc; border: 1px solid #6f4e37; border-radius: 6px; cursor: grab;">
+            🥐 Croissant de Mantequilla ($45 MXN)
+          </div>
+          <div class="producto-drag" style="padding: 10px; margin-bottom: 10px; background: #efe6dc; border: 1px solid #6f4e37; border-radius: 6px; cursor: grab;">
+            🍰 Rebanada de Pastel de Zanahoria ($65 MXN)
+          </div>
+        </div>
+
+        <div id="charola-combo" style="min-height: 170px; padding: 18px; border: 2px dashed #6f4e37; border-radius: 8px; background: #faf6f0;">
+          <h3>🧺 Charola de Combo</h3>
+          <p id="texto-charola">Suelta aquí los productos que desees incluir.</p>
+          <ul id="lista-combo"></ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- VENTANA MODAL (WIDGET DIALOG - TEMA 6.4) -->
+  <div id="modal-promo" title="☕ Promoción Especial Universitaria">
+    <p>Presentando tu credencial estudiantil obtén <strong>15% de descuento</strong> en bebidas frías y pan dulce.</p>
+  </div>
+
+  <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+  <a href="https://wa.me/529510000000?text=Hola%20Aroma%20y%20Grano,%20quiero%20hacer%20un%20pedido"
+     target="_blank" class="btn-whatsapp">💬 WhatsApp Pedidos</a>
+
+  <footer>
+    <p>Cafetería <strong>Aroma y Grano</strong> — Práctica Integradora de jQuery y jQuery UI</p>
+    <p>Navega a: <a href="menu.html">Menú Interactivo</a> | <a href="reservas-contacto.html">Reservas, Mapa y AJAX</a></p>
+  </footer>
+
+  <!-- CARGA DE LIBRERÍAS EN ORDEN OBLIGATORIO: 1. jQuery Core -> 2. jQuery UI -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+
+  <script>
+    // Espera a que el DOM esté completamente cargado antes de ejecutar jQuery
+    $(function() {
+
+      // [Tema 5 - Efectos] Alterna la visibilidad de la nota promocional en el Hero
+      $("#btn-hero-efecto").on("click", function() {
+        $("#nota-hero").slideToggle(400);
+      });
+
+      // [Tema 6.4 - Widget Tabs] Convierte el bloque de servicios en pestañas interactivas
+      $("#tabs-servicios").tabs();
+
+      // [Tema 6.4 - Widget Dialog] Configura la ventana modal de promoción
+      $("#modal-promo").dialog({
+        autoOpen: false,
+        modal: true,
+        width: 380,
+        buttons: {
+          "Cerrar": function() {
+            $(this).dialog("close");
+          }
+        }
+      });
+
+      // [Tema 5 - Eventos] Abre el diálogo al hacer clic en el botón del Hero
+      $("#btn-abrir-promo").on("click", function() {
+        $("#modal-promo").dialog("open");
+      });
+
+      // [Tema 6.5 - Efectos] Anima el color de fondo y texto de las pestañas de servicios
+      $("#btn-animar-servicio").on("click", function() {
+        $("#tabs-servicios").animate({
+          backgroundColor: "#fff3cd",
+          color: "#2c1810"
+        }, 700);
+      });
+
+      // [Tema 6.5 - Efectos] Aplica el efecto 'shake' para llamar la atención visual
+      $("#btn-sacudir-servicio").on("click", function() {
+        $("#tabs-servicios").effect("shake", { times: 2, distance: 8 }, 400);
+      });
+
+      // [Tema 6.3 - Interacciones] Permite arrastrar cada tarjeta de producto y regresar si no cae en la charola
+      $(".producto-drag").draggable({
+        revert: "invalid",
+        cursor: "grabbing"
+      });
+
+      // [Tema 6.3 - Interacciones] Detecta cuando sueltan un producto sobre la charola y lo agrega a la lista
+      $("#charola-combo").droppable({
+        drop: function(event, ui) {
+          let nombreProducto = ui.draggable.text().trim();
+          $("#texto-charola").hide();
+          $("#lista-combo").append("<li>" + nombreProducto + "</li>");
+          $(this).effect("highlight", { color: "#e8f5e9" }, 500);
+        }
+      });
+
+    });
+  </script>
+</body>
+</html>

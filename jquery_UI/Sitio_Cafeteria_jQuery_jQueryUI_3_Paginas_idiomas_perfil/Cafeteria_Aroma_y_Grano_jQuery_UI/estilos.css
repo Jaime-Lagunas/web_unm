@@ -1,0 +1,248 @@
+/* ==========================================================================
+   HOJA DE ESTILOS COMPARTIDA - CAFETERÍA "AROMA Y GRANO"
+   Complementa el tema de jQuery UI con diseño limpio, responsivo y cálido.
+   Soporta perfiles dinámicos de color y tipografía elegidos por el usuario.
+   ========================================================================== */
+:root {
+  --cafe-oscuro: #2c1810;
+  --cafe-medio: #6f4e37;
+  --cafe-claro: #d7ccc8;
+  --crema-fondo: #faf6f0;
+  --blanco: #ffffff;
+  --acento-dorado: #c68b59;
+  --verde-whatsapp: #25d366;
+  --texto-principal: #2b2118;
+  --fuente-sitio: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Perfiles de color alternativos aplicables mediante jQuery en <body> */
+body.perfil-color-matcha {
+  --cafe-oscuro: #1b4332;
+  --cafe-medio: #2d6a4f;
+  --cafe-claro: #b7e4c7;
+  --crema-fondo: #f1faee;
+  --acento-dorado: #74c69d;
+  --texto-principal: #1b4332;
+}
+
+body.perfil-color-noche {
+  --cafe-oscuro: #111827;
+  --cafe-medio: #374151;
+  --cafe-claro: #4b5563;
+  --crema-fondo: #1f2937;
+  --blanco: #2b3544;
+  --acento-dorado: #f59e0b;
+  --texto-principal: #f9fafb;
+}
+
+/* Perfiles tipográficos aplicables mediante jQuery en <body> */
+body.fuente-serif {
+  --fuente-sitio: Georgia, 'Times New Roman', Times, serif;
+}
+
+body.fuente-mono {
+  --fuente-sitio: 'Courier New', Courier, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente-sitio);
+  background-color: var(--crema-fondo);
+  color: var(--texto-principal);
+  line-height: 1.6;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+/* Barra de navegación superior */
+.navbar {
+  background-color: var(--cafe-oscuro);
+  color: #ffffff;
+  padding: 14px 28px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.marca {
+  font-size: 1.35rem;
+  font-weight: bold;
+  color: var(--acento-dorado);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background-color 0.25s;
+}
+
+.nav-links a:hover,
+.nav-links a.activo {
+  background-color: var(--cafe-medio);
+  color: #ffe0b2;
+}
+
+/* Botones de accesibilidad / perfil en la barra superior */
+.controles-perfil {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-perfil {
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  border: 1px solid var(--acento-dorado);
+  padding: 6px 11px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+.btn-perfil:hover {
+  background-color: var(--cafe-medio);
+}
+
+/* Sección Hero */
+.hero {
+  background: linear-gradient(rgba(44, 24, 16, 0.72), rgba(44, 24, 16, 0.72)),
+              url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+  color: #ffffff;
+  padding: 64px 24px;
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 0 0 12px;
+  font-size: 2.3rem;
+}
+
+.hero p {
+  max-width: 680px;
+  margin: 0 auto 24px;
+  font-size: 1.1rem;
+  color: #f5ebe0;
+}
+
+.contenedor {
+  max-width: 1050px;
+  margin: 32px auto;
+  padding: 0 20px;
+}
+
+.seccion-card {
+  background: var(--blanco);
+  border-radius: 10px;
+  padding: 26px;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 14px rgba(44, 24, 16, 0.08);
+}
+
+.seccion-card h2 {
+  margin-top: 0;
+  color: var(--texto-principal);
+  border-bottom: 2px solid var(--acento-dorado);
+  padding-bottom: 8px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.tarjeta-item {
+  border: 1px solid #e6ddd5;
+  border-radius: 8px;
+  padding: 18px;
+  background: var(--crema-fondo);
+}
+
+.precio {
+  font-weight: bold;
+  color: var(--cafe-medio);
+  font-size: 1.1rem;
+}
+
+.badge-tema {
+  display: inline-block;
+  background: #efe6dc;
+  color: #2c1810;
+  font-size: 0.78rem;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.btn-cafe {
+  background-color: var(--cafe-medio);
+  color: #ffffff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: inherit;
+  margin-right: 8px;
+  margin-top: 6px;
+}
+
+.btn-cafe:hover {
+  background-color: var(--cafe-oscuro);
+}
+
+/* Botón flotante de WhatsApp */
+.btn-whatsapp {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  background-color: var(--verde-whatsapp);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 13px 18px;
+  border-radius: 50px;
+  font-weight: bold;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  z-index: 1000;
+}
+
+.btn-whatsapp:hover {
+  background-color: #1ebe5d;
+}
+
+/* Pie de página */
+footer {
+  background-color: var(--cafe-oscuro);
+  color: #e6ddd5;
+  text-align: center;
+  padding: 24px 16px;
+  margin-top: 48px;
+}
+
+footer a {
+  color: var(--acento-dorado);
+}
